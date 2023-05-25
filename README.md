@@ -55,10 +55,10 @@ First, you need to retrieve the generated public key and import it in Laravel.
 If you have [jq](https://stedolan.github.io/jq/download/) _(a script to parse JSON objects)_ installed, you can run the command below from the `laravel` folder to fetch it directly.
 
 ```shell
-curl -H 'Authorization: this_really_should_be_a_long_random_alphanumeric_value_but_this_still_works' http://localhost:9011/api/key/1afa4d7e-76f0-45e9-bb46-98be5329ef37 | jq -r '.key.publicKey' > public-key.pem
+curl -H 'Authorization: this_really_should_be_a_long_random_alphanumeric_value_but_this_still_works' http://localhost:9011/api/key/1afa4d7e-76f0-45e9-bb46-98be5329ef37 | jq -r '.key.publicKey' > storage/public-key.pem
 ```
 
-If you don't have it, log into the [FusionAuth admin screen](http://localhost:9011) using the admin user credentials ("admin@example.com"/"password"), navigate to `Settings > Key Master`, locate the key named `For exampleapp` and click its download button. Inside the downloaded `.zip` file, go to the `keys` folder and extract `public-key.pem` to the `laravel` directory located in the `fusionauth-example-laravel-api` repository you cloned.
+If you don't have it, log into the [FusionAuth admin screen](http://localhost:9011) using the admin user credentials ("admin@example.com"/"password"), navigate to `Settings > Key Master`, locate the key named `For exampleapp` and click its download button. Inside the downloaded `.zip` file, go to the `keys` folder and extract `public-key.pem` to the `laravel/storage` directory located in the `fusionauth-example-laravel-api` repository you cloned.
 
 Now, you need to call FusionAuth to get an access token. For ease of use, these instructions will use the Login API, but you could also get the access token via the hosted login pages.
 
