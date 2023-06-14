@@ -24,7 +24,7 @@
             "body": {
               "key": {
                 "algorithm": "RS256",
-                "name": "For exampleapp",
+                "name": "For Laravel Example App",
                 "length": 2048
               }
             }
@@ -51,7 +51,15 @@
             "tenantId": "#{defaultTenantId}",
             "body": {
               "application": {
-                "name": "Example app",
+                "name": "Laravel Example App",
+                "oauthConfiguration": {
+                  "authorizedRedirectURLs": ["http://localhost/login"],
+                  "authorizedOriginURLs": ["http://localhost"],
+                  "logoutURL": "http://localhost/logout",
+                  "enabledGrants": ["authorization_code", "refresh_token"],
+                  "debug": true,
+                  "generateRefreshTokens": true
+                },
                 "jwtConfiguration": {
                   "enabled": true,
                   "accessTokenKeyId": "#{asymmetricKeyId}",

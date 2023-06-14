@@ -8,6 +8,7 @@ use App\FusionAuth\FusionAuthJWTGuard;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use Tymon\JWTAuth\Http\Parser\Cookies;
 
 class FusionAuthServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,14 @@ class FusionAuthServiceProvider extends ServiceProvider
 
             return $guard;
         });
+
+        /** @var \Tymon\JWTAuth\Http\Parser\Parser $parsers */
+        $parsers = $this->app['tymon.jwt.parser'];
+        foreach ($parsers->getChain() as $parser) {
+            if ($parser instanceof Cookies) {
+                $parser->setKey('app_at');
+            }
+        }
     }
 
 }

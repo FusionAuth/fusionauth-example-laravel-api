@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MessagesController;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +22,5 @@ Route::group(['middleware' => 'auth:api'], function (Registrar $router) {
         $router->post('me', [AuthController::class, 'me']);
     });
 
-    $router->get('messages', [MessagesController::class, 'index']);
+    $router->get('messages', MessagesController::class);
 });

@@ -186,4 +186,9 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'fusionauth' => [
+        'url' => rtrim(env('FUSIONAUTH_URL'), '/'),
+        'client_id' => env('FUSIONAUTH_CLIENT_ID'),
+    ],
+
 ];
