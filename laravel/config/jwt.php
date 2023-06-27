@@ -83,6 +83,52 @@ return [
 
         'passphrase' => env('JWT_PASSPHRASE'),
 
+        /*
+        |--------------------------------------------------------------------------
+        | JWKS
+        |--------------------------------------------------------------------------
+        |
+        | To retrieve Public Keys from a remote JWKS file, configure it here.
+        | Note: Only Tymon\JWTAuth\Providers\JWT\WebTokenProvider supports JWKS
+        | currently.
+        |
+        | @see https://datatracker.ietf.org/doc/html/rfc7517#section-4
+        |
+        */
+
+        'jwks' => [
+            /*
+            |--------------------------------------------------------------------------
+            | JWKS URI
+            |--------------------------------------------------------------------------
+            |
+            | Fully-qualified URI for a JWKS.json file
+            |
+            | E.g. 'https://your.website.address/.well-known/jwks.json'
+            |
+            */
+            'url' => env('JWT_JWKS_URL'),
+
+            /*
+            |--------------------------------------------------------------------------
+            | JWKS Local Cache
+            |--------------------------------------------------------------------------
+            */
+            'cache' => [
+                /*
+                |--------------------------------------------------------------------------
+                | JWKS Local Cache TTL
+                |--------------------------------------------------------------------------
+                |
+                | How long the application should locally cache the JWKS file
+                |
+                | E.g. 86400 for 1 day
+                |
+                */
+                'ttl' => env('JWT_JWKS_URL_CACHE'),
+            ],
+        ],
+
     ],
 
     /*
@@ -272,7 +318,7 @@ return [
         |
         */
 
-        'jwt' => Tymon\JWTAuth\Providers\JWT\Lcobucci::class,
+        'jwt' => FusionAuth\JWTAuth\WebTokenProvider\Providers\JWT\WebTokenProvider::class,
 
         /*
         |--------------------------------------------------------------------------
