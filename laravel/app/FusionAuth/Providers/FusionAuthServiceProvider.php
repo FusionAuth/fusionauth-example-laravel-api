@@ -35,6 +35,7 @@ class FusionAuthServiceProvider extends ServiceProvider
         foreach ($parsers->getChain() as $parser) {
             if ($parser instanceof Cookies) {
                 $parser->setKey('app_at');
+                break;
             }
         }
     }

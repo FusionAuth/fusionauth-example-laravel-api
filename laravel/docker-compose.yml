@@ -22,6 +22,7 @@ services:
             - '.:/var/www/html'
         networks:
             - sail
+            - fusionauth_db_net
         depends_on:
             - mariadb
     mariadb:
@@ -51,6 +52,8 @@ services:
 networks:
     sail:
         driver: bridge
+    fusionauth_db_net:
+        external: true
 volumes:
     sail-mariadb:
         driver: local
