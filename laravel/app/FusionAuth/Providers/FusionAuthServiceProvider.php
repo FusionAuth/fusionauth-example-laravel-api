@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\FusionAuth\Providers;
 
+use App\FusionAuth\Claims\Audience;
+use App\FusionAuth\Claims\Issuer;
 use App\FusionAuth\FusionAuthJWTGuard;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +31,11 @@ class FusionAuthServiceProvider extends ServiceProvider
 
             return $guard;
         });
+
+        /** @var \Tymon\JWTAuth\Claims\Factory $factory */
+        $factory = $this->app['tymon.jwt.claim.factory'];
+        $factory->extend('iss', Issuer::class);
+        $factory->extend('aud', Audience::class);
 
         /** @var \Tymon\JWTAuth\Http\Parser\Parser $parsers */
         $parsers = $this->app['tymon.jwt.parser'];
