@@ -308,8 +308,8 @@ return [
     */
 
     'validators' => [
-        'iss' => [env('FUSIONAUTH_URL', 'issuer')],
-        'aud' => [env('FUSIONAUTH_CLIENT_ID', 'audience')],
+        'iss' => env('FUSIONAUTH_URL', ''),
+        'aud' => env('FUSIONAUTH_CLIENT_ID', ''),
     ],
 
     /*

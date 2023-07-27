@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\FusionAuth\Claims;
 
-use Tymon\JWTAuth\Claims\Issuer as TymonIssuer;
+use Tymon\JWTAuth\Claims\Issuer as BaseIssuerClaim;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
-class Issuer extends TymonIssuer
+class Issuer extends BaseIssuerClaim
 {
-    private array $validValues;
+    private string $expectedValue;
 
     /**
      * @throws \Tymon\JWTAuth\Exceptions\TokenInvalidException
@@ -31,16 +31,15 @@ class Issuer extends TymonIssuer
             return false;
         }
 
-        if (!isset($this->validValues)) {
-            /** @var string[] $validIssuers */
-            $this->validValues = (array) config('jwt.validators.iss');
+        if (!isset($this->expectedValue)) {
+            $this->expectedValue = \strtolower((string) config('jwt.validators.iss'));
         }
 
         // If we have specified valid values, we check if the current issue is present there
-        if (empty($this->validValues)) {
+        if (empty($this->expectedValue)) {
             return true;
         }
 
-        return \in_array(\strtolower($value), $this->validValues);
+        return \strtolower($value) === $this->expectedValue;
     }
 }

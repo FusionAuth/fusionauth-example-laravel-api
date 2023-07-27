@@ -9,7 +9,7 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class Audience extends BaseAudienceClaim
 {
-    private array $validValues;
+    private string $expectedValue;
 
     /**
      * @throws \Tymon\JWTAuth\Exceptions\TokenInvalidException
@@ -31,16 +31,15 @@ class Audience extends BaseAudienceClaim
             return false;
         }
 
-        if (!isset($this->validValues)) {
-            /** @var string[] $validAudiences */
-            $this->validValues = (array) config('jwt.validators.aud');
+        if (!isset($this->expectedValue)) {
+            $this->expectedValue = \strtolower((string) config('jwt.validators.aud'));
         }
 
-        // If we have specified valid values, we check if the current issue is present there
-        if (empty($this->validValues)) {
+        // If we have specified valid values, we check if the current audience is present there
+        if (empty($this->expectedValue)) {
             return true;
         }
 
-        return \in_array(\strtolower($value), $this->validValues);
+        return \strtolower($value) === $this->expectedValue;
     }
 }
