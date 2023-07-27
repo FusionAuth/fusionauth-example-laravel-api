@@ -32,7 +32,7 @@ class Issuer extends BaseIssuerClaim
         }
 
         if (!isset($this->expectedValue)) {
-            $this->expectedValue = \strtolower((string) config('jwt.validators.iss'));
+            $this->expectedValue = \strtolower(config('app.fusionauth.url'));
         }
 
         // If we have specified valid values, we check if the current issue is present there

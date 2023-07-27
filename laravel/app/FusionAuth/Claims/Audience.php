@@ -32,7 +32,7 @@ class Audience extends BaseAudienceClaim
         }
 
         if (!isset($this->expectedValue)) {
-            $this->expectedValue = \strtolower((string) config('jwt.validators.aud'));
+            $this->expectedValue = \strtolower(config('app.fusionauth.client_id'));
         }
 
         // If we have specified valid values, we check if the current audience is present there
