@@ -37,7 +37,7 @@ class Audience extends BaseAudienceClaim
 
         // If we have specified valid values, we check if the current audience is present there
         if (empty($this->expectedValue)) {
-            return true;
+            return false;
         }
 
         return \strtolower($value) === $this->expectedValue;
