@@ -1,3 +1,5 @@
+**This repo is out of date and is archived. Check out [an updated tutorial on using FusionAuth with Laravel](https://fusionauth.io/docs/quickstarts/quickstart-php-laravel-api) or [the updated GitHub repository](https://github.com/FusionAuth/fusionauth-quickstart-php-laravel-api).**
+
 # Example: Using a Laravel API with FusionAuth
 
 This project contains an example project that illustrates using FusionAuth with Laravel10 for an API.
